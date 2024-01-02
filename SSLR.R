@@ -1,4 +1,4 @@
-source("C:/Users/nwb188/OneDrive - University of Copenhagen/PhD/Phage infectivity/Phage_storage/ggcor/ggplot2_config.R")
+source("./ggplot2_config.R")
 library(ggalluvial)
 library(reshape2)
 library(export)
@@ -8,13 +8,13 @@ library(tidyverse)
 library(dplyr)
 library(plyr) 
 library(phyloseq)
-.libPaths("C:/Program Files/R/R-4.2.0/library")
-.libPaths("C:/Users/nwb188/AppData/Local/R/win-library")
+.libPaths("./R-4.2.0/library")
+.libPaths("./win-library")
 #Fig1
 
-setwd("C:/Users/nwb188/OneDrive - University of Copenhagen/PhD/SSL/SSL_data/R/DNA_Mock")
+setwd("./DNA_Mock")
 
-TPM <- read.csv("C:/Users/nwb188/OneDrive - University of Copenhagen/PhD/SSL/SSL_data/R/DNA_Mock/FV_result/Mock_percentage_final.csv",sep = ',', header = T)
+TPM <- read.csv("./DNA_Mock/FV_result/Mock_percentage_final.csv",sep = ',', header = T)
 
 TPM$Method = factor(TPM$Method, levels=c('ExpectedA', 'ExpectedB','ExpectedC','SSLR10','SSLR100','xGen','MDA_0.5h','MDA_1.5h','Nextera'))
 TPM$Phage = factor(TPM$Phage, levels=c('T4','T7','P1','Lambda','C2','P35','Phi29','PhiX174','M13mp18'))
@@ -39,7 +39,7 @@ Fig2A_DNA <- TPM1 %>% filter(c(T4=="Yes")) %>%
         strip.background = element_blank(),
         axis.text.x.bottom = element_text(angle = 45,hjust = 1, vjust = 1)) +
   ggtitle("DNA phage Mock without T4_expected")
-graph2ppt(Fig2A_DNA, file="C:/Users/nwb188/OneDrive - University of Copenhagen/PhD/SSL/SSL_data/R/DNA_Mock/FV_result/DNA phage Mock without T4_expected",paper= "A4", width = 5, height = 5, scaling = 75, vector.graphic = TRUE)
+graph2ppt(Fig2A_DNA, file="./DNA_Mock/FV_result/DNA phage Mock without T4_expected",paper= "A4", width = 5, height = 5, scaling = 75, vector.graphic = TRUE)
 
 
 #Read in raw otu data 
@@ -253,7 +253,7 @@ graph2ppt(figs1, file="Fig4A",paper= "A4",width = 15, height = 5,vector.graphic 
 #        strip.background = element_blank(),
 #        axis.text.x.bottom = element_text(angle = 0,hjust = 1, vjust = 1)) +
 #  ggtitle("Mock_C with T4")
-#graph2ppt(figS2A, file="NXT077_result/figS2_Mock_C with T4",paper= "A4",width = 5, height = 3,scaling = 100,vector.graphic = TRUE)
+#graph2ppt(figS2A, file="./figS2_Mock_C with T4",paper= "A4",width = 5, height = 3,scaling = 100,vector.graphic = TRUE)
 
 library("ggpubr")
 #TPM <- read.csv("C:/Users/nwb188/OneDrive - University of Copenhagen/PhD/SSL/SSL_data/R/Fig2S_DNA_NXT077_pearsoncor-T4_new_dsDNA.csv",sep = ',', header = T)
@@ -287,7 +287,7 @@ Fig2C <- TPM %>% filter(T4=="Yes") %>%filter(!Method %in% c("SSLR100","ExpectedA
         axis.text.x.bottom = element_text(angle = 0,hjust = 1, vjust = 1)) +
   ggtitle("dsDNA Mock_pearson with T4")
 
-graph2ppt(Fig2C, file="C:/Users/nwb188/OneDrive - University of Copenhagen/PhD/SSL/SSL_data/R/DNA_Mock/FV_result/dsDNA Mock_pearson with T4",paper= "A4",width = 15, height = 5,scaling = 100)
+graph2ppt(Fig2C, file="./FV_result/dsDNA Mock_pearson with T4",paper= "A4",width = 15, height = 5,scaling = 100)
 
 ################################ Pearson correlation analysis between expected and observed (%)
 TPM3 <- TPM %>% filter(!Method %in% c("ExpectedA","ExpectedB","ExpectedC"))
@@ -318,7 +318,7 @@ Fig2C <- TPM %>% filter(T4=="Yes") %>%filter(!Method %in% c("SSLR100","ExpectedA
         axis.text.x.bottom = element_text(angle = 0,hjust = 1, vjust = 1)) +
   ggtitle("dsDNA Mock_pearson wit T4")
 
-graph2ppt(Fig2C, file="C:/Users/nwb188/OneDrive - University of Copenhagen/PhD/SSL/SSL_data/R/DNA_Mock/FV_result/dsDNA Mock_pearson with T4",paper= "A4",width = 15, height = 5,scaling = 100)
+graph2ppt(Fig2C, file="./R/DNA_Mock/FV_result/dsDNA Mock_pearson with T4",paper= "A4",width = 15, height = 5,scaling = 100)
 TPM4 <- TPM[-c(8,17,26,35,44,53,62,71,80,89,98,107,116,125,134,143,152,161,170,179,188,197,206,215,224,233,242,251,260,269,278,287,296,305,314,323),]
 TPM4 <- TPM[-c(8,17,26,35,44,53,62,71,80,89,98,107,116,125,134,143,152,161,170,179,188,197,206,215,224,233,242,251,260,269,278,287,296,305,314,323,332,341,350,359,368,377),]
 ############## FigS4 MDA Qubit vs Nanodrop ################
@@ -559,8 +559,8 @@ write.table(SNP,file = "SNP1.txt",sep="\t")
 p5 <- CMplot(SNP,type="p",plot.type="c",r=0.4,cir.legend=TRUE,LOG10=FALSE,threshold=NULL,
          outward=FALSE,cir.legend.col="black",cir.chr.h=1.0,chr.den.col="black",
          memo="",dpi=300,file.output= FALSE,verbose=TRUE,width=10,height=10)
-graph2tif(p5, file="C:/Users/nwb188/OneDrive - Københavns Universitet/PhD/SSL/SSL data/R/test", width = 10, height = 10, scaling = 100)
-graph2ppt(p5, file="NXT077_result/Fig3A_coverage")
+graph2tif(p5, file="./SSL/SSL data/R/test", width = 10, height = 10, scaling = 100)
+graph2ppt(p5, file="./Fig3A_coverage")
 
 CMplot(SNP,plot.type="q",col=matrix(c("#4DAF4A","dodgerblue4","deepskyblue","dodgerblue1", 
                                       "olivedrab3", "darkgoldenrod1")),threshold=1e-6,
